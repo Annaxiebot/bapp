@@ -207,7 +207,7 @@ export const settings = {
   
   async save(newSettings: AppSettings): Promise<void> {
     const db = await getDB();
-    await db.put('settings', { key: 'app', ...newSettings });
+    await db.put('settings', newSettings, 'app');
   },
 };
 
@@ -215,18 +215,21 @@ export const settings = {
 export const bible = {
   async get(bookId: string, chapter: number): Promise<any> {
     const db = await getDB();
-    const result = await db.get('bible', [bookId, chapter]);
+    const key = `${bookId}-${chapter}`;
+    const result = await db.get('bible', key);
     return result?.data;
   },
   
   async save(bookId: string, chapter: number, data: any): Promise<void> {
     const db = await getDB();
-    await db.put('bible', { bookId, chapter, data });
+    const key = `${bookId}-${chapter}`;
+    await db.put('bible', { bookId, chapter, data }, key);
   },
   
   async has(bookId: string, chapter: number): Promise<boolean> {
     const db = await getDB();
-    const result = await db.get('bible', [bookId, chapter]);
+    const key = `${bookId}-${chapter}`;
+    const result = await db.get('bible', key);
     return !!result;
   },
 };

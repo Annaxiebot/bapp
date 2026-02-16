@@ -111,7 +111,7 @@ export async function isChapterCached(bookId: string, chapter: number): Promise<
 // Search verses (simple text search)
 export async function searchVerses(
   query: string,
-  bookId?: string
+  _bookId?: string
 ): Promise<BibleVerse[]> {
   // For now, this is a simple implementation
   // In production, you'd want a more sophisticated search

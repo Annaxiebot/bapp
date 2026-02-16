@@ -9,7 +9,7 @@ interface SidebarProps {
   currentChapter: number;
 }
 
-export default function Sidebar({ open, onClose, onOpenSettings, onNavigate, currentBook, currentChapter }: SidebarProps) {
+export default function Sidebar({ open, onClose, onOpenSettings, onNavigate, currentBook }: SidebarProps) {
   if (!open) return null;
 
   const otBooks = BIBLE_BOOKS.filter(b => b.testament === 'OT');
